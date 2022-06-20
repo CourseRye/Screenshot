@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web 需求文档</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="bear-note-unique-identifier" content="C99D7B79-1D3C-446E-B012-D5A0BAA14CD7-387-000007E836C7BA53">
+        <meta name="created" content="2022-06-10T14:35:33+0800"/>
+        <meta name="modified" content="2022-06-20T11:26:08+0800"/>
+        <meta name="tags" content=""/>
+        <meta name="last device" content="Assassin"/>
+    </head>
+    <body>
+        <div class="note-wrapper">
+            <h1 id="Web 需求文档">Web 需求文档</h1>
+<br>
+<h2 id="修改记录">修改记录</h2>
+<br>
+<ul><li>[2022-06-20] [V1.0.4] 需求文档删除目录的第 13 部分。
+</li><li>[2022-06-17] [V1.0.3] 需求文档细节修改，增加目录。
+</li><li>[2022-06-17] [V1.0.2] 需求文档细节修改，涉及到所有功能。
+</li><li>[2022-06-15] [V1.0.1] 需求文档初步写完。
+</li><li>[2022-06-10] [V1.0.0] 需求文档创建，进度 50%。
+</li></ul>
+<br>
+<h2 id="文档目录">文档目录</h2>
+<br>
+<ol start="1"><li><a href="#1 全局说明"">/1 全局说明</a>
+</li><li><a href="#2 主页"">/2 主页</a>
+</li><li><a href="#3 注册登录"">/3 注册登录</a>
+</li><li><a href="#4 买币"">/4 买币</a>
+</li><li><a href="#5 行情"">/5 行情</a>
+</li><li><a href="#6 币币交易"">/6 币币交易</a>
+</li><li><a href="#7 合约交易-差价合约"">/7 合约交易-差价合约</a>
+</li><li><a href="#8 期权交易"">/8 期权交易</a>
+</li><li><a href="#9 关于我们"">/9 关于我们</a>
+</li><li><a href="#10 安全中心"">/10 安全中心</a>
+</li><li><a href="#11 个人中心"">/11 个人中心</a>
+</li><li><a href="#12 邀请好友"">/12 邀请好友</a>
+</li></ol>
+<br>
+<h2 id="1 全局说明">1 全局说明</h2>
+<br>
+<h3 id="1.1 文档内容">1.1 文档内容</h3>
+<br>
+<p>当产品文档与设计稿的细节有冲突时，以产品文档为准。</p>
+<ul><li>例如产品文档中说明的提示文案和设计稿文案，以产品文档为准。
+</li><li>如果文档中有说明「以设计稿」为准的，以设计稿为准。
+</li><li>未做说明的，以产品文档为准。
+</li></ul>
+<br>
+<h3 id="1.2 登录与未登录">1.2 登录与未登录</h3>
+<br>
+<ul><li>未登录：游客模式，部分页面功能会有所限制。
+</li><li>已登录未通过高级验证：部分页面功能会有所限制。
+</li><li>已登录已通过高级验证：页面功能无限制。
+</li></ul>
+<br>
+<h3 id="1.3 多端在线">1.3 多端在线</h3>
+<br>
+<p>不允许两个 Web 同时在线，Web 唯一的判断标准：设备+浏览器；例如：</p>
+<ul><li>在 Mac 的 Chrome 登录后，不允许在其他设备重复登录；如果重复登录了，则之前登录信息会失效，并恢复为未登录状态。
+</li><li>在 Mac 的 Chrome 登录后，不允许在该 Mac 的其他浏览器重复登录；如果重复登录了，则之前登录信息会失效，并恢复为未登录状态。
+</li></ul>
+<br>
+<p>允许一台手机和一个 Web 同时在线，例如：</p>
+<ul><li>iPhone + Web。
+</li><li>Android + Web。
+</li></ul>
+<br>
+<p>不允许两台手机同时在线，例如：</p>
+<ul><li>iPhone + iPhone。
+</li><li>iPhone + Android。
+</li><li>Android + Android。
+</li></ul>
+<br>
+<h3 id="1.4 组件逻辑-日期选择器">1.4 组件逻辑-日期选择器</h3>
+<br>
+<p>参考 <a href="https://element-plus.gitee.io/zh-CN/component/date-picker.html#%E5%85%B6%E4%BB%96%E6%97%A5%E6%9C%9F%E5%8D%95%E4%BD%8D">Element-Date Picker-选择一段时间-带快捷选项</a>。</p>
+<ul><li>定义：以日为单位，在一个选择器中便捷地选择一个时间范围。
+</li><li>快捷选项：选择最近的一周；最近的一个月；最近的三个月。
+</li><li>默认显示日期：无，即显示所有时间段的数据。
+</li><li>显示清除按钮：清除选项后，恢复到默认选项。
+</li><li>选择时间范围，即时刷新表格数据，即无需点击查询按钮。
+</li><li>占位符：请选择-请选择。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/434B5687-4B6A-47CF-9603-C43F8AF96E8A.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/434B5687-4B6A-47CF-9603-C43F8AF96E8ACYWmXZ.png" alt="" title=""></p>
+<br>
+<h3 id="1.5 组件逻辑-输入框">1.5 组件逻辑-输入框</h3>
+<br>
+<ul><li>类型：通过鼠标或键盘输入字符。
+</li><li>占位文本：请输入。
+</li><li>一键清空：使用 <code class='code-inline'>clearable</code> 属性即可得到一个可一键清空的输入框。
+</li><li>当输入时，自动补全：根据当前输入的内容获取对应的输入建议。、
+</li><li>远程搜索：从服务端搜索数据。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/6CE93D11-C3EF-489C-8D41-85210AA9B688.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/2pf5vilRAzTx.png" alt="" title=""></p>
+<br>
+<h3 id="1.6 组件逻辑-选择框">1.6 组件逻辑-选择框</h3>
+<br>
+<p>参考 <a href="https://element-plus.gitee.io/zh-CN/component/select.html#%E7%AD%9B%E9%80%89%E9%80%89%E9%A1%B9">Element Select 选择器-筛选选项</a>组件。</p>
+<ul><li>类型：Select 选择框。
+</li><li>输入长度：不限制。
+</li><li>占位文本：请选择。
+</li><li>可清空单选：包含清空按钮，可将选择器清空为初始状态。
+</li><li>可以利用筛选功能快速查找选项。
+</li><li>多选。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/911171CB-0B83-4569-887D-8B0A184B71AE.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/911171CB-0B83-4569-887D-8B0A184B71AEYsIxEa.png" alt="" title=""></p>
+<br>
+<h3 id="1.7 组件逻辑-分页">1.7 组件逻辑-分页</h3>
+<br>
+<p>参考 <a href="https://element-plus.gitee.io/zh-CN/component/date-picker.html#%E5%85%B6%E4%BB%96%E6%97%A5%E6%9C%9F%E5%8D%95%E4%BD%8D">Element-Date Picker-选择一段时间-带快捷选项</a>。</p>
+<ul><li>显示当前页数。
+</li><li>只有一页时是否隐藏分页器。
+</li><li>每页条数默认 20 条；可更改。
+</li><li>支持快速跳转至某页。
+</li><li>显示最大页码按钮数。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F8BA5C51-7BBE-4770-97AA-099159628B40.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/F8BA5C51-7BBE-4770-97AA-099159628B40BNHgqI.png" alt="" title=""></p>
+<br>
+<h3 id="1.8 组件逻辑-表单">1.8 组件逻辑-表单</h3>
+<br>
+<ul><li>定义：允许用户在文本域、下拉列表、单选框、复选框等等）输入信息的元素，例如「注册登录」「币币交易」「弹窗」等页面中都有表单。
+</li><li>表单在必填写必选项，未填写未选择时，提交按钮置灰，不可点击。
+</li><li>只有当必填写必选项，全部填写完成时，提交按钮才可点击。
+</li><li>点击后的逻辑各不相同，见具体说明。
+</li></ul>
+<br>
+<h3 id="1.9 组件逻辑-表格">1.9 组件逻辑-表格</h3>
+<br>
+<p>参考「<a href="https://element-plus.gitee.io/zh-CN/component/table.html#%E5%B8%A6%E6%96%91%E9%A9%AC%E7%BA%B9%E8%A1%A8%E6%A0%BC">Element-Table-带斑马条纹表格</a>」。</p>
+<ul><li>排序：默认按照时间倒序排序。
+</li><li>显示数量：默认一页 20 行数据；超过显示分页器。
+</li><li>带斑马纹表格：使用带斑马纹的表格，可以更容易区分出不同行的数据。
+</li><li>单元格长度根据字段值长度自适应，超过固定宽度后，在底部显示横向浏览指示器。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/D93DF294-2091-44D2-B1CC-7B2700D2958B.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/D93DF294-2091-44D2-B1CC-7B2700D2958BJgV0f9.png" alt="" title=""></p>
+<br>
+<h3 id="1.10 组件逻辑-Popconfirm">1.10 组件逻辑-Popconfirm</h3>
+<br>
+<ul><li>定义：点击某个元素弹出一个简单的气泡确认框，用于关键操作的二次确认。
+</li><li>点击确认按钮时，确认操作。
+</li><li>点击取消按钮，否定操作，并关闭。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/27807D59-A7E0-4481-B74E-8CB6CAD86960.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/27807D59-A7E0-4481-B74E-8CB6CAD86960AWsXYb.png" alt="" title=""></p>
+<br>
+<h3 id="1.11 组件逻辑-提示">1.11 组件逻辑-提示</h3>
+<br>
+<p>参考「<a href="https://element-plus.gitee.io/zh-CN/component/message.html#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95">Element-Message-基础用法</a>」。</p>
+<ul><li>定义：常用于主动操作后的反馈提示。 与 Notification 的区别是后者更多用于系统级通知的被动提醒。
+</li><li>显示从顶部出现，3 秒后自动消失。
+</li><li>不同状态：用来显示「成功、警告、消息、错误」类的操作反馈。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/1ED29A82-8BE2-44D0-A66F-A3FB0BDAD4F7.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/1ED29A82-8BE2-44D0-A66F-A3FB0BDAD4F77acLw2.png" alt="" title=""></p>
+<br>
+<h3 id="1.12 数据格式">1.12 数据格式</h3>
+<br>
+<ul><li>数值：默认使用千分位帮助用户阅读；例如 123,220。
+</li><li>日期：YYYY-MM-DD。
+</li><li>时间：HH:MM。
+</li><li>日期和时间：YYYY-MM-DD HH:MM。
+</li><li>百分比：比例问题时使用百分比；精确到小数点后两位。
+</li><li>银行卡号码：保留前四位与后六位，其余 <code class='code-inline'> * </code> 表示。仅能识别发卡行与大部份个人账号标识。
+</li></ul>
+<br>
+<p>位置排列</p>
+<ul><li>在表格中，诸如金额、数量等数值分布排列时，通常采用「右对齐」方式，既方便用户快捷读取数据，还可以使用户进行纵向数据对比。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/BCB74CEF-82D0-4CF6-8CE4-97E4C8C7B8D5.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/BCB74CEF-82D0-4CF6-8CE4-97E4C8C7B8D54yulzN.png" alt="" title=""></p>
+<br>
+<p>数字脱敏</p>
+<ul><li>数据脱敏是指对某些敏感信息通过脱敏规则进行数据变形，实现敏感隐私数据的可靠保护。此处给出的脱敏规则为通用产品规范，遇到数据安全性较强的业务场景，可根据业务场景自行调整。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/1A6D5301-99A3-4F14-9E67-11F2C86E2D85.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/1A6D5301-99A3-4F14-9E67-11F2C86E2D85tKIPsj.png" alt="" title=""></p>
+<br>
+<p>无数据时用 <code class='code-inline'>- - -</code> 表示。</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/A175BFA4-E238-48B4-8567-1632E23257C9.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/A175BFA4-E238-48B4-8567-1632E23257C9cmkRSp.png" alt="" title=""></p>
+<br>
+<p>数据加载</p>
+<ul><li>数据加载用「骨架屏」表示。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/02872955-DFE0-4028-A402-DD11C6CDF683.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/02872955-DFE0-4028-A402-DD11C6CDF683UTH28Y.png" alt="" title=""></p>
+<br>
+<h3 id="1.13 异常场景">1.13 异常场景</h3>
+<br>
+<p>404</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/33B47ACB-78F4-4610-9333-C88A889132E5.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/b5M2QPSxCrob.png" alt="" title=""></p>
+<br>
+<p>500</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/459268F3-4650-48D4-9FA1-4DD8756FD0C5.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/bCyPkKYvB33J.png" alt="" title=""></p>
+<br>
+<p>501 暂无数据：表格或网页无数据时显示。</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/4D4AF996-0183-4C9A-8EC9-5AFAB1FB8C23.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/4D4AF996-0183-4C9A-8EC9-5AFAB1FB8C23Yb9iR4.png" alt="" title=""></p>
+<br>
+<h2 id="2 主页">2 主页</h2>
+<br>
+<h3 id="2.1 页面布局">2.1 页面布局</h3>
+<br>
+<ul><li>顶部导航栏。
+</li><li>Banner。
+</li><li>公告。
+</li><li>横幅币种管理。
+</li><li>热门币种管理。
+</li><li>页脚。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/4FF06AA7-896D-4D4E-9A10-148C433EB599.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/4FF06AA7-896D-4D4E-9A10-148C433EB5997eXJqN.png" alt="" title=""></p>
+<br>
+<p>设计稿预览</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/791E2090-ABEB-4870-BC02-48AF8A17540A.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/791E2090-ABEB-4870-BC02-48AF8A17540AY2HoKT.png" alt="" title=""></p>
+<br>
+<h3 id="2.2 未登录-顶部导航栏">2.2 未登录-顶部导航栏</h3>
+<br>
+<ul><li>Logo：点击 Logo，显示「首页」页面。
+</li><li>买币：点击后在当前页面显示「买币」页面。
+</li><li>行情：点击后在当前页面显示「行情」页面。
+</li><li>现货交易：
+<ul><li>	hover 时显示二级 tooltip 弹窗。
+</li><li>	点击「币币交易」，在当前页面显示「币币交易」页面。
+</li></ul></li><li>合约交易：
+<ul><li>	hover 时显示二级 tooltip 弹窗。
+<ul><li>		点击「差价合约」，在当前页面显示「差价合约」页面。
+</li><li>		点击「期权合约」，在当前页面显示「期权合约」页面。
+</li></ul></li></ul></li><li>更多：
+<ul><li>	hover 时显示二级 tooltip 弹窗。
+</li><li>	点击「关于我们」，新建 Tab 页面打开落地页。
+</li><li>	落地页的链接设置由 MTP 后台控制。
+</li></ul></li><li>登录：点击后在当前页面显示「登录」页面。
+</li><li>注册：点击后在当前页面显示「注册」页面。
+</li><li>下载：
+<ul><li>	点击后在当前页面显示「下载」页面。
+</li><li>	hover 时显示二级 tooltip 弹窗：
+<ul><li>		显示二维码：iOS 扫码后，跳转至 App Store；Android 扫码后，直接下载 Apk。
+</li><li>		显示文案：如图。
+</li><li>		显示「更多下载」，点击后在当前页面显示「下载」页面。
+</li></ul></li></ul></li><li>语言：简繁英。
+</li><li>法币汇率：
+<ul><li>	目前只显示 CNY。
+</li><li>	后续会有切换至 HKD、USD 等。
+</li><li>	汇率的显示会影响「主页」「行情」「交易」等页面的法币汇率显示。
+</li></ul></li><li>涨幅：
+<ul><li>	hover 时显示二级 tooltip 弹窗。
+</li><li>	点击「红涨绿跌」，涨幅改为红涨绿跌。
+</li><li>	点击「绿涨红跌」，涨幅改为绿涨红跌。
+</li><li>	默认红涨绿跌。
+</li></ul></li><li>网站模式：日夜间模式切换。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F51F038F-F0D9-47EE-A372-EDB113A3A8D2.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/F51F038F-F0D9-47EE-A372-EDB113A3A8D2.png" alt="" title=""></p>
+<br>
+<h3 id="2.3 已登录-顶部导航栏">2.3 已登录-顶部导航栏</h3>
+<br>
+<ul><li>不显示登录和注册。
+</li><li>显示提醒按钮。
+</li><li>显示个人中心：
+<ul><li>	hover 时显示二级 tooltip 弹窗。
+</li><li>	资产：点击后在当前页面显示「注册」页面。
+</li><li>	资金流水：点击后在当前页面显示「资金流水」页面。
+</li><li>	安全中心：点击后在当前页面显示「安全中心」页面。
+</li><li>	邀请好友：点击后在当前页面显示「邀请好友」页面。
+</li><li>	退出：退出登录，恢复为未登录状态，即游客模式。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/0CC8262B-5FA1-4718-911F-2A0258DF8F2D.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/0CC8262B-5FA1-4718-911F-2A0258DF8F2D.png" alt="" title=""></p>
+<br>
+<h3 id="2.4 提醒">2.4 提醒</h3>
+<br>
+<p>提醒图标逻辑：</p>
+<ul><li>未读消息数为零时，不显示消息数量。
+</li><li>未读消息数大于零小于等于 99 时，显示具体的消息数量。
+</li><li>未读消息数大于 99 时，显示「99+」。
+</li></ul>
+<br>
+<p>提醒浮窗：</p>
+<ul><li>点击提醒图标，在提醒图标下方显示此浮窗。
+</li><li>格式：标题、简介、日期时间。
+</li><li>标题：
+<ul><li>	最多一行，超过用 …… 显示。
+</li><li>	消息 Tab 的标题为「MTP 后台-通知模板管理-通知名称」。
+</li><li>	公告Tab 的标题为「MTP 后台-资讯信息管理-通知标题」。
+</li></ul></li><li>内容：
+<ul><li>	最多一行，超过用 …… 显示。
+</li><li>	消息 Tab 的简介为「MTP 后台-通知模板管理-通知内容」。
+</li><li>	公告Tab 的简介为「落地页的 HTML Head Description」。
+</li></ul></li><li>日期时间：YYYY-MM-DD。
+</li><li>未读消息显示小红点，已读消息置灰。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/42930FC8-206B-4842-B86B-56319A502953.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/q3JNJKkXZttu.png" alt="" title=""></p>
+<br>
+<p>点击逻辑：</p>
+<ul><li>点击热区：标题、内容、时间。
+</li><li>点击展开，显示全部内容；再次点击，折叠内容。
+</li></ul>
+<br>
+<h3 id="2.5 语言默认选项">2.5 语言默认选项</h3>
+<br>
+<p>获取浏览器默认语言：</p>
+<ul><li>若为简体，显示「简体中文」。
+</li><li>若为繁体，显示「繁体中文」。
+</li><li>若为英语或其他语言，显示「English」。
+</li></ul>
+<br>
+<p>若获取不到浏览器语言，获取 IP：</p>
+<ul><li>若为中国大陆，显示「简体中文」。
+</li><li>若为中国香港、台湾，显示「繁体中文」。
+</li><li>若为其他地区，显示「English」。
+</li></ul>
+<br>
+<h3 id="2.6 网站模式">2.6 网站模式</h3>
+<br>
+<p>获取系统主题：</p>
+<ul><li>若为日间模式，显示「日间模式」。
+</li><li>若为夜间模式，显示「夜间模式」。
+</li></ul>
+<br>
+<p>若获取不到系统主题，获取用户当地时间：</p>
+<ul><li>08:00-18:00：显示「日间模式」。
+</li><li>18:00-08:00：显示「夜间模式」。
+</li></ul>
+<br>
+<h3 id="2.7 邀请码">2.7 邀请码</h3>
+<br>
+<p>邀请码可在 MTP 后台配置：</p>
+<ul><li>对有所人生效：在「注册登录」页面是否显示邀请码字段。默认不显示。
+</li><li>对有所人生效：在「顶部导航栏」是否显示邀请码入口。默认不显示。
+</li><li>对某些人生效：谁有邀请码。
+</li><li>邀请码所有人都可以填。
+</li></ul>
+<br>
+<p>邀请码逻辑：</p>
+<ul><li>邀请码仅可在首次注册账户时使用。您或受邀人必须输入正确的推荐码。如果受邀人在注册时忘记使用或输入了错误的推荐码，则您将无法赚取该受邀人产生的佣金。
+</li><li>您以在受邀用户的币币交易、差价合约、期权进行交易时赚取佣金。
+</li><li>推荐人只有先自己有对应的账户，即币币交易账户、差价合约账户、期权账户，才能从好友交易中赚钱。
+</li><li>推荐佣金将实时计算，每间隔一小时转账至相应的币币帐户。只有在受邀人完成交易后，您才能获得推荐佣金。
+</li></ul>
+<br>
+<h3 id="2.8 Banner">2.8 Banner</h3>
+<br>
+<p>轮播数量：</p>
+<ul><li>由「MTP 后台-系统管理-轮播图管理」控制轮播图片的数量，具体逻辑见「MTP 后台产品文档」。
+</li><li>最少 1 张图片，最多 9 张图片。
+</li></ul>
+<br>
+<p>轮播模式：</p>
+<ul><li>顺序播放，依次显示第一张、第二张等。
+</li></ul>
+<br>
+<p>切换条件：</p>
+<ul><li>自动切换：每张图片的显示时间为 5s，自动切换至下一张。
+</li><li>手动切换：向左滑动或向右滑动切换，切换后，重置图片的显示时间。
+</li><li>切换动效：平移，0.5s。
+</li></ul>
+<br>
+<p>分页器：</p>
+<ul><li>圆点显示，显示当前聚焦的图片和图片总数量。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/24FEFE9E-759A-4796-BC0E-8889EDDEBE3C.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/24FEFE9E-759A-4796-BC0E-8889EDDEBE3C3Pr0oD.png" alt="" title=""></p>
+<br>
+<h3 id="2.9 公告">2.9 公告</h3>
+<br>
+<p>公告逻辑：</p>
+<ul><li>公告的设置逻辑见「MTP 后台产品文档」。
+</li><li>默认显示最新的一条公告。
+</li><li>格式：标题和日期 MM-DD。
+</li><li>点击「公告标题」，新建 Tab 页面并跳转至公告落地页。
+</li><li>点击「更多」，在当前页面显示「文章列表」页面。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F3A8EA25-29B9-476B-AB67-6F96BC97E22E.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/F3A8EA25-29B9-476B-AB67-6F96BC97E22EDe3w2Z.png" alt="" title=""></p>
+<br>
+<p>公告-文章列表逻辑：</p>
+<ul><li>标题：文章列表。
+</li><li>列表：
+<ul><li>	按时间倒序显示，每页最多显示 20 条公告；超过 20 条分页显示。
+</li><li>	文章发布时间，根据当前时间计算；最近一年内发布的：MM-DD HH:MM；超过一年内发布的：YYYY-MM-DD HH:MM。
+</li></ul></li><li>文章的发布、下架、标题、发布时间等参数由 MTP 后台设置。
+</li><li>点击文章标题，新建 Tab 标签页并跳转至落地页，浏览文章。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8.png" alt="" title=""></p>
+<br>
+<h3 id="2.10 横幅币种管理">2.10 横幅币种管理</h3>
+<br>
+<p>横幅显示逻辑：</p>
+<ul><li>横幅币种的设置逻辑见「MTP 后台产品文档」。
+</li><li>显示 5 个横幅。
+</li><li>在不同分辨率的 Web 浏览时，横幅币种需要自适应宽高。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/7D6F8B01-C3BF-497C-B549-0AE48EEBBE93.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/7D6F8B01-C3BF-497C-B549-0AE48EEBBE93DI4hgi.png" alt="" title=""></p>
+<br>
+<p>币种显示逻辑：</p>
+<ul><li>币种名称：MTP 后台设置。
+</li><li>涨跌幅：根据顶部导航栏的涨幅设置进行显示；数值精确到小数点后两位。
+</li><li>币种图标：MTP 后台设置。
+</li><li>币种价格：后端推送。
+</li><li>币种法币汇率：根据顶部导航栏设置进行换算。
+</li><li>币种的背景色：根据顶部导航栏设置的涨跌色，显示对应的涨跌色。
+</li></ul>
+<br>
+<h3 id="2.11 热门币种管理">2.11 热门币种管理</h3>
+<br>
+<p>设置逻辑：</p>
+<ul><li>设置哪些币种为热门币种的逻辑由「MTP 后台控制」。
+</li><li>前端根据后端推送的 API 进行显示即可，不规定要显示多少个热门币种。
+</li></ul>
+<br>
+<p>列表逻辑：</p>
+<ul><li>名称：
+<ul><li>	左对齐。
+</li><li>	币种图标：MTP 后台设置。
+</li><li>	币种名称：MTP 后台设置。
+</li></ul></li><li>最新价：
+<ul><li>	右对齐。
+</li><li>	数值使用千分位，即每隔三位数显示英文逗号。
+</li><li>	数值的小数位数由 MTP 后台设置。
+</li></ul></li><li>涨跌幅：
+<ul><li>	右对齐。
+</li><li>	根据顶部导航栏的涨幅设置进行显示。
+</li><li>	数值精确到小数点后两位。
+</li></ul></li><li>最高最低：逻辑和「最新价」一致。
+</li><li>行情：
+<ul><li>	 右对齐。
+</li><li>	根据顶部导航栏的涨幅设置进行显示。
+</li><li>	图表根据后端推送的 API 进行显示即可，不规定要显示具体多久的行情。
+</li></ul></li><li>交易按钮：
+<ul><li>	即图中的购买按钮，实际开发写「交易」。
+</li><li>	点击在当前页面显示对应币种的「币币交易」页面。
+</li></ul></li><li>查看更多：点击在当前页面显示「行情」页面。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/53619A39-A3BA-4166-9823-4642A2FC9229.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/53619A39-A3BA-4166-9823-4642A2FC9229izYsRz.png" alt="" title=""></p>
+<br>
+<h3 id="2.12 页脚">2.12 页脚</h3>
+<br>
+<p>固定文案，见设计稿。</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/5556A92B-DAD6-412C-AB94-D90BD4A8A92B.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/5556A92B-DAD6-412C-AB94-D90BD4A8A92BP3ba5H.png" alt="" title=""></p>
+<br>
+<h2 id="3 注册登录">3 注册登录</h2>
+<br>
+<h3 id="3.1 页面布局">3.1 页面布局</h3>
+<br>
+<p>注册登录方式有手机（后续版本会有邮箱）。</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/802D1A60-8E2B-473C-ACEE-BFEFD7EDC25E.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/802D1A60-8E2B-473C-ACEE-BFEFD7EDC25Ejch8V5.png" alt="" title=""></p>
+<br>
+<p><mark>登录按钮下方需要有「注册」文字链。</mark></p>
+<br>
+<h3 id="3.2 手机注册">3.2 手机注册</h3>
+<br>
+<p>手机号码：</p>
+<ul><li>必填。
+</li><li>输入框分为两部分：第一部分是「国际电话区号 」，第二部分是「手机号码」。
+</li><li>国际电话区号：根据网站的语言设置决定：
+<ul><li>	简体中文：默认填写 +86。
+</li><li>	繁体中文：默认填写 +852。
+</li><li>	英文：默认填写 +1。
+</li><li>	可删除默认填写的区号，并自行填写；只能删除数字，+ 号无法删除。
+</li><li>	只能输入数字，最多三位数。
+</li></ul></li><li>手机号码：只能输入数字；最少输入位数不限制；最多 11 位数。
+</li></ul>
+<br>
+<p>验证码按钮：</p>
+<ul><li>必填。
+</li><li>有「获取验证码」和「N 秒后重发」两种状态。
+</li><li>获取验证码：可点击，点击后将验证码发送至已填写的手机号，同时状态改为「N 秒后重发」。
+</li><li>N 秒后重发：按钮置灰，不可点击。N 为 60 秒倒计时，倒计时结束后，状态改为「获取验证码」
+</li></ul>
+<br>
+<p>机构代码：</p>
+<ul><li>必填。
+</li><li>机构代码由 MTP 后台设置， 默认为设置的默认值。
+</li><li>默认值可更改。
+</li><li>字符输入限制：字母（大小写不限）、数字和符号（仅限 ASCII 标准字符）。
+</li></ul>
+<br>
+<p>设置密码：</p>
+<ul><li>必填。
+</li><li>字符长度：8-16 位。
+</li><li>字符输入限制：字母（大小写不限）、数字和符号（仅限 ASCII 标准字符）。
+</li><li>提示文案：请使用 8-16 个字母、数字和符号的组合。
+</li><li>密码小于 8 位时，提示：密码小于 8 位，请重新输入。
+</li><li>密码大于 16 位时，提示：密码大于 16 位，请重新输入。
+</li><li>密码只有数字时，提示：密码中未包含字母和符号，请重新输入。
+</li><li>密码只有字母时，提示：密码中未包含数字和符号，请重新输入。
+</li><li>密码只有符号时，提示：密码中未包含数字和字母，请重新输入。
+</li><li>密码只有数字和字母时，提示：密码中未包含符号，请重新输入。
+</li><li>密码只有数字和符号时，提示：密码中未包含字母，请重新输入。
+</li><li>密码只有字母和符号时，提示：密码中未包含数字，请重新输入。
+</li><li>何时提示：输入焦点从输入框中移出。
+</li><li>密码前后端都需要验证。
+</li></ul>
+<br>
+<p>确认密码：</p>
+<ul><li>必填。
+</li><li>字符长度：8-16 位。
+</li><li>字符输入限制：字母（大小写不限）、数字和符号（仅限 ASCII 标准字符）。
+</li><li>输入框输入的字符需要和「设置密码」一致。
+</li><li>输入不一致时，提示：两次输入的密码不一致，请重新输入。
+</li><li>何时提示：输入焦点从输入框中移出。
+</li><li>密码前后端都需要验证。
+</li></ul>
+<br>
+<p>邀请码：</p>
+<ul><li>选填。
+</li><li>字符长度：8-16 位。
+</li><li>字符输入限制：字母（大小写不限）、数字和符号（仅限 ASCII 标准字符）。
+</li></ul>
+<br>
+<p>Radio 我已阅读隐私协议和使用条款：</p>
+<ul><li>必选。
+</li><li>默认未勾选。
+</li><li>后端暂时不需要记录用户是否点击过「隐私协议和使用条款」。
+</li></ul>
+<br>
+<p>注册按钮：</p>
+<ul><li>上述必填、必选的未填写、未选择时，注册按钮置灰，不可点击。
+</li><li>都填写、已选择时，注册按钮可点击。
+</li><li>点击提示「注册成功」，并返回点击注册按钮前一页面。
+<ul><li>	例如在首页点击注册，注册完成后返回首页。
+</li><li>	例如在行情点击注册，注册完成后返回行情。
+</li></ul></li><li>如果前一页面是「登录」，则返回点击登录按钮前一页面，逻辑同上。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/599AE0A1-097B-4B33-900E-1C8C2C037849.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/TWJOExPhYQsY.png" alt="" title=""></p>
+<br>
+<p><mark>注册按钮下方需要有「登录」文字链。</mark></p>
+<br>
+<h3 id="3.3 手机登录、手机找回">3.3 手机登录、手机找回</h3>
+<br>
+<ul><li>逻辑同「手机注册」。
+</li><li>点击「忘记密码」，在当前页面显示「忘记密码（即手机找回）」。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/8F960142-6993-480D-A813-1B2EC89E6669.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/lZth5UTOaNws.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/EF495AD2-8C18-4261-9BC2-543DFE0B03C4.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/ospGEMRjetIP.png" alt="" title=""></p>
+<br>
+<h2 id="4 买币">4 买币</h2>
+<br>
+<h3 id="4.1页面布局">4.1页面布局</h3>
+<br>
+<ul><li>顶部导航栏。
+</li><li><mark>一级菜单栏：</mark>
+<ul><li>	自选交易。
+</li><li>	我的订单。
+</li><li>	收款方式。
+</li><li>	商家中心：新增广告、我的广告。
+</li></ul></li><li>二级菜单栏：
+<ul><li>	自选交易：购买、出售。
+</li><li>	支付方式：银行卡、微信、支付宝。
+</li><li>	刷新按钮：点击刷新当前页面，重新获取数据。
+</li></ul></li><li>交易列表：数据由后端返回。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/596B6788-9F14-4C5B-BB11-5F739E34E234.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/596B6788-9F14-4C5B-BB11-5F739E34E234FcU18Y.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/21A34262-A974-44FA-A75C-77CF155B577F.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/21A34262-A974-44FA-A75C-77CF155B577FFG2qQM.png" alt="" title=""></p>
+<br>
+<p>权限控制：</p>
+<ul><li>卖家（即商家）：显示全部功能。
+</li><li>买家：显示「自选交易-购买」、我的订单。
+</li></ul>
+<br>
+<h3 id="4.2 流程概述">4.2 流程概述</h3>
+<br>
+<p>卖家发布「我想卖广告」，买家买：</p>
+<ul><li>卖家先发布卖币的广告，此时平台在「法币账户」冻结对应的币种数量；若无币种数量，则无法发布广告。
+</li><li>卖币广告显示在「买币-购买」列表。
+</li><li>买家看到，点击「购买」并用法币付款。
+</li><li>卖家收到法币后，确认放行。
+</li><li>买家「法币账户」增加对应的余额，卖家「法币账户」扣除对应余额。
+</li></ul>
+<br>
+<p>买家发布「我想买广告」，卖家卖：</p>
+<ul><li>买家先发布买币的广告。
+</li><li>买币广告显示在「买币-出售」列表。
+</li><li>卖家看到，点击「出售」并在「法币账户」冻结对应的币种数量；若无币种数量，则无法出售。
+</li><li>买家看到有人卖后，点击「购买」并用法币付款。
+</li><li>卖家收到法币后，确认放行。
+</li><li>买家「法币账户」增加对应的余额，卖家「法币账户」扣除对应余额。
+</li></ul>
+<br>
+<p>交易流程及场景：</p>
+<ul><li>买家在规定时间内付款，卖家在规定时间内收款并放行，交易完成。
+</li><li>买家在规定时间内付款，卖家未在规定时间内收款并放行，交易超时，自动完成。
+</li><li>买家在规定时间内付款，但实际上没付款，卖家没有收到，卖家申诉，人工介入。判定买方违约，取消卖家冻结占用资金；判定卖方违约，自动放行。
+</li><li>买家未在规定时间内付款，交易超时，订单关闭。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/WechatIMG90.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/WechatIMG90yg14b9.png" alt="" title=""></p>
+<br>
+<h3 id="4.3 自选交易-购买">4.3 自选交易-购买</h3>
+<br>
+<p>页面布局：</p>
+<ul><li>支付方式：
+<ul><li>	类型：下拉框。
+</li><li>	占位符：支付方式。
+</li><li>	默认项：无，即全选。
+</li><li>	可选项：银行卡、微信、支付宝。
+</li></ul></li><li>刷新按钮：点击手动刷新表格数据。
+</li><li>表格。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/054A1C09-6138-420D-886B-D593E3790524.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/cymsWKAyEoCt.png" alt="" title=""></p>
+<br>
+<p>表格：</p>
+<ul><li>广告方：卖家，显示卖家账号的头像、昵称。
+</li><li>单价：
+<ul><li>	显示操作栏选中的「数字货币」对应的法币单价。
+</li><li>	目前只有 CNY，后续会有 USD、HKD 等。
+</li><li>	单价等后端 API 数据返回进行显示。
+</li><li>	单价右对齐。
+</li><li>	单价格式：单价数量+法币单位。
+</li></ul></li><li>数量和限额：
+<ul><li>	数量：卖家发布时填写的数量。
+</li><li>	限额：卖家发布时填写的限额。
+</li><li>	左对齐（如图）。
+</li></ul></li><li>支付方式：卖家发布时支持的支付方式；显示对应的支付方式图标。
+</li><li>购买按钮：点击显示「购买弹窗」：
+<ul><li>	未登录时，显示「购买按钮」。点击购买，显示「注册登录」弹窗。
+</li><li>	已登录，未完成初级认证，显示「初级认证」文字链；点击显示「认证身份」弹窗。
+<ul><li>		已登录，未完成高级认证，显示「高级认证」文字链；点击显示「认证身份」弹窗。
+</li></ul></li><li>	已登录，已完成「高级认证」，未设置资金密码，显示「设置资金密码」文字链；点击显示「设置资金密码」弹窗。
+</li><li>	已登录，已完成「高级认证」，已设置资金密码，显示「购买按钮」；点击购买，显示购买确认弹窗。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/3A86251B-7FC2-4735-BE18-C46BE4A81F73.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/ADlMfhXx0BSR.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/65F9DDE3-B85A-44A2-A487-05D0A487B9FB.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/65F9DDE3-B85A-44A2-A487-05D0A487B9FBp5QiZu.png" alt="" title=""></p>
+<br>
+<p>购买弹窗：</p>
+<ul><li>弹窗左侧为说明文案 ，右侧为输入框。
+</li><li>左侧说明文案：
+<ul><li>	用户头像、昵称、已成交的单数、已成交的成功数。
+</li><li>	单价、限额、数量
+</li><li>	收款方式：显示卖家支持的收款方式。
+</li><li>	固定文案：请在提交申请的 24 小时内，转账给买方；24 为后台返回值。
+</li></ul></li><li>右侧输入框：
+<ul><li>	购买数量：
+<ul><li>		类型：数字输入框；最大值等于左侧的数量字段值。
+</li><li>		占位符：0-N；N 为左侧的数量字段值。
+</li><li>		全部：点击全部，自动填写左侧的数量字段值。
+</li></ul></li><li>	购买金额：
+<ul><li>		无需输入。
+</li><li>		根据左侧「单价」值和「购买数量」值，自动计算；
+</li><li>		精确到小数点后两位。
+</li></ul></li><li>	购买数量和购买金额的输入值会互相影响：
+<ul><li>		在「购买数量」输入值时，购买金额的数量会相应的更改。
+</li><li>		在「购买金额」输入值时，购买数量的数量会相应的更改。
+</li><li>		判断标准：输入框失去焦点。
+</li></ul></li><li>	资金密码：校验和输入的逻辑同「个人中心-设置资金密码」。
+</li><li>	购买：
+<ul><li>		点击购买，创建订单；
+</li><li>		订单已创建，请到「我的订单」页面付款并完成交易交易。
+</li></ul>
+</li></ul>
+</li></ul>
+<br>
+<h3 id="4.4 我的订单">4.4 我的订单</h3>
+<br>
+<p>二级导航栏：</p>
+<ul><li>进行中：显示订单状态为「待付款」「待放行」的订单数据。
+</li><li>已完成：显示订单状态为「已完成」的订单数据。
+</li><li>其他：显示订单状态为「申诉中」「买方违约」「卖方违约」「超时关闭」的订单数据。
+</li><li>全部：显示所有的订单数据。
+</li></ul>
+<br>
+<p>操作栏：</p>
+<ul><li>操作栏的所有选项筛选后，即时刷新表格数据。
+</li><li>可清空选项；清空选项后，恢复到默认选项。
+</li><li>即无需查询和重置按钮。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E6%88%91%E7%9A%84%E8%AE%A2%E5%8D%95.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E6%88%91%E7%9A%84%E8%AE%A2%E5%8D%95pr8nxN.png" alt="" title=""></p>
+<br>
+<p>表格字段（数据来自后端返回数据）：</p>
+<ul><li>日期选择器。
+</li><li>订单编号：输入框。
+</li><li>商品/代码：显示交易的数字币种。
+</li><li>法币币种：显示交易的法币币种。
+</li><li>单价：右对齐。
+</li><li>数量：右对齐。
+</li><li>总价：右对齐。
+</li><li>手续费：右对齐。
+</li><li>交易昵称：交易用户的昵称。
+</li><li>交易类型：买和卖。
+</li><li>收款信息：点击查看，显示「查看收款信息」弹窗。
+</li><li>状态：
+<ul><li>	待付款：订单成立，等待买家付款。
+</li><li>	待放行：买家已付款，等待卖家放行。
+</li><li>	已完成：卖家已放行，交易完成。
+</li><li>	申诉中：买家或卖家申诉。
+</li><li>	买方违约：申诉后，判定买方违约，取消卖方相关的冻结数字货币金额。
+</li><li>	卖方违约：申诉后，判定卖方违约，系统帮卖方放行。
+</li><li>	超时关闭：买家在待付款时没有付款或取消了订单。
+</li></ul></li><li>操作：
+<ul><li>	待付款时：
+<ul><li>		买家显示「付款」和「取消订单」。
+</li><li>		卖家没有按钮。
+</li></ul></li><li>	待放行时：
+<ul><li>		买家没有按钮。
+</li><li>		卖家显示「放行」和「申诉」。
+</li></ul></li><li>	申诉中：
+<ul><li>		买家显示「申诉」。
+</li><li>		卖家显示「取消申诉」。
+</li></ul>
+</li></ul>
+</li></ul>
+<br>
+<p>状态为待付款和待放行，额外显示倒计时（即进度条组件），用以表明：</p>
+<ul><li>需要在 N 分钟内付款；未付款则订单状态改为「超时关闭」。
+</li><li>需要在 N 分钟内付款；未放行则自动放行，订单状态改为「已完成」。
+</li><li>倒计时的时间根据后端 API 返回数据进行显示即可。
+</li></ul>
+<br>
+<p>查看收款信息弹窗：</p>
+<ul><li>收款方式。
+</li><li>姓名。
+</li><li>账号。
+</li><li>银行。
+</li><li>支行。
+</li><li>二维码。
+</li></ul>
+<br>
+<p>付款信息弹窗：</p>
+<ul><li>选择：Radio 单选；只能选择某一个收款方式，无法多选。
+</li><li>付款：popconfirm 二次确认。
+</li><li>其余逻辑同「查看收款信息。」
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E6%94%B6%E6%AC%BE%E4%BF%A1%E6%81%AF.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E6%94%B6%E6%AC%BE%E4%BF%A1%E6%81%AFalPWWw.png" alt="" title=""></p>
+<br>
+<p>其他操作：</p>
+<ul><li>付款：点击订单状态改为待放行，等待卖家放行。
+</li><li>放行：popconfirm 二次确认。
+</li><li>申诉：
+<ul><li>	卖家申诉时，付款凭证选填。
+</li><li>	买家申诉时，付款凭证必填。
+</li><li>	申诉原因：textarea；不限制文本类型和长度。
+</li><li>	付款凭证：upload 图片上传器；不限制图片大小；图片类型为 jpg、png、jpeg。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/1BE09863-D28F-452B-A70D-599473811B9D.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/1BE09863-D28F-452B-A70D-599473811B9DD3UN29.png" alt="" title=""></p>
+<br>
+<h3 id="4.5 收款方式-未添加">4.5 收款方式-未添加</h3>
+<br>
+<p>未登录点击：显示「注册登录」弹窗。</p>
+<br>
+<p>已登录未通过初级及高级认证，提示：</p>
+<ul><li>你需要在 App 完成初级认证后，才可以添加收款方式。
+</li><li>你需要在 App 完成高级认证后，才可以添加收款方式。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/007B7D79-21C7-4579-8FBE-BD906D6898DA.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/007B7D79-21C7-4579-8FBE-BD906D6898DAaXzgYc.png" alt="" title=""></p>
+<br>
+<p>已登录且通过高级认证，未添加收款方式：</p>
+<ul><li>提示：你目前没有任何收款方式；
+</li><li>去添加：点击「去添加」，显示「新增支付方式」弹窗。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/AB3435CA-4C4F-498C-B3A9-6C0EA426584B.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/AB3435CA-4C4F-498C-B3A9-6C0EA426584BebjdeU.png" alt="" title=""></p>
+<br>
+<h3 id="4.6 收款方式-新增">4.6 收款方式-新增</h3>
+<br>
+<p>银行卡：</p>
+<ul><li>收款方式：
+<ul><li>	类型：Radio。
+</li><li>	默认银行卡；可选支付宝、微信。
+</li><li>	姓名：文本输入框。字符长度不限制。
+</li><li>	选择银行：选择框。
+</li></ul></li><li>支行名称：文本输入框。字符长度不限制。
+</li><li>银行账号：数字输入框。字符长度不限制。
+</li><li>资金密码：校验和输入的逻辑同「个人中心-设置资金密码」。
+</li><li>新增：以上选项未填写时，按钮置灰不可点击；选项都填写时，点击新增收款方式，同时成功提示：新增收款方式成功。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/12E7A4B2-0A19-4EF8-BE94-9110BFB73DA7.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/12E7A4B2-0A19-4EF8-BE94-9110BFB73DA7MEgxD8.png" alt="" title=""></p>
+<br>
+<p>新增收款方式-支付宝或微信：</p>
+<ul><li>账号：文本输入框。字符长度不限制。
+</li><li>收款二维码：点击上传图片。
+</li><li>其余逻辑同「银行卡」收款方式。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/6F192B74-A8CA-4363-AF3A-AA5F39E489CE.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/6F192B74-A8CA-4363-AF3A-AA5F39E489CE9MZ8CI.png" alt="" title=""></p>
+<br>
+<h3 id="4.7 收款方式-已添加">4.7 收款方式-已添加</h3>
+<br>
+<ul><li>显示已添加的支付方式
+</li><li>在最末尾显示「添加」；点击显示「新增收款方式」弹窗。
+</li></ul>
+<br>
+<p>新增逻辑和交互</p>
+<ul><li>每种支付方式都可以添加多个，但每种支付方式只能同时启用一个。
+</li><li>例如：能添加多个银行卡，但同时只能启用一张银行卡。
+</li><li>例如：能添加多个银行卡多个微信多个支付宝，但同时只能用一张银行卡，一个微信、一个支付宝。
+</li><li>启用某一个支付方式时，同类型已启用的支付方式会被关闭。
+</li><li>例如启用银行卡 A，关闭正在使用的银行卡 B。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/96C2037C-BB77-48AF-B953-0ECAC18D4273.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/96C2037C-BB77-48AF-B953-0ECAC18D42738HMn9t.png" alt="" title=""></p>
+<br>
+<h3 id="4.8 发布广告">4.8 发布广告</h3>
+<br>
+<p>何时显示，在「商家中心」点击「发布广告」：</p>
+<ul><li>判断是否已通过初级和高级，未通过则显示「认证身份」弹窗。
+</li><li>判断是否已设置资金密码；未设置则显示「设置资金密码弹窗」，逻辑同上。
+</li><li>都通过，显示此弹窗。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/D581CA30-C7F5-4A7C-A2AF-E166249A52EC.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/D581CA30-C7F5-4A7C-A2AF-E166249A52ECbU4t2P.png" alt="" title=""></p>
+<br>
+<ul><li>发布广告弹窗分「我要买」和「我要卖」，默认显示「我要买」。
+</li><li>我要买弹窗不判断用户是否有收款信息。
+</li><li>我要卖弹窗判断用户是否有收款信息，当用户没有收款信息时，提示用户添加；点击去添加，跳转至「收款方式」页面。
+</li></ul>
+<br>
+<p>弹窗逻辑：</p>
+<ul><li>币种：选择框；选择了某个币种后，在选择框下方提示币种的单价和限额区间；具体数值由后端返回。
+</li><li>购买价格：
+<ul><li>	类型：数字输入框。
+</li><li>	长度：不限制。
+</li><li>	占位符：请输入。
+</li><li>	右侧法币单位：顶部导航栏设置的法币单位。
+</li></ul></li><li>购买数量：
+<ul><li>	类型：数字输入框。
+</li><li>	长度：不限制。
+</li><li>	占位符：请输入。
+</li><li>	右侧数字货币单位：固定 USDT。
+</li></ul></li><li>购买金额：
+<ul><li>	类型：数字输入框。
+</li><li>	长度：不限制。
+</li><li>	占位符：请输入。
+</li></ul></li><li>付款方式：
+<ul><li>	checkbox。
+</li><li>	选项：银行卡、支付宝、微信。
+</li><li>	多选项。
+</li></ul></li><li>发布买币：
+<ul><li>	当以上5 个选项，有任意未填写的选项时，发布买币按钮置灰，不可点击。
+</li><li>	全部填写时，点击「发布买币」，提示「发布成功」；同时将发布的表单数据在「买币-出售」列表显示。
+</li></ul>
+</li></ul>
+<br>
+<h3 id="4.9 我的广告">4.9 我的广告</h3>
+<br>
+<p>操作栏：</p>
+<ul><li>日期选择器。
+</li><li>状态：下拉选择框。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/7EB9DE83-E0B5-463C-8055-D0C129118F78.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/7EB9DE83-E0B5-463C-8055-D0C129118F7850bomA.png" alt="" title=""></p>
+<br>
+<p>表格字段（顺序如下）：</p>
+<ul><li>订单号。
+</li><li>时间。
+</li><li>商品代码。
+</li><li>价格。
+</li><li>未成交数量。
+</li><li>已成交数量。
+</li><li>已撤单数量。
+</li><li>交易中数量。
+</li><li>交易类型：购买、出售。
+</li><li>状态：
+<ul><li>	委托成功：未成交数量＞0，且已成交数量＝0。
+</li><li>	部成：未成交数量＞0，且已成交数量＞0。
+</li><li>	已成：未成交数量=0，且已成交数量＞0。
+</li><li>	部成部撤：未成交数量=0，且已成交数量＞0，且已撤单数量＞0。
+</li><li>	已撤：未成交数量=0，且已成交数量＝0，且已撤单数量＞0
+</li></ul></li><li>操作：
+<ul><li>	委托成功和部成时，显示撤销按钮。
+</li><li>	已成、部成部撤、已撤，没有撤销按钮。
+</li><li>	点击撤销按钮，popconfrim 提示：确认要撤销吗？
+</li><li>	撤销后，订单状态改为「已撤」；同时在「买币」页面不会显示相关的订单。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/E6028D88-356A-45A7-A18B-D4B732CDFB24.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/E6028D88-356A-45A7-A18B-D4B732CDFB246FiAl1.png" alt="" title=""></p>
+<br>
+<h2 id="5 行情">5 行情</h2>
+<br>
+<p>未登录时，显示：</p>
+<ul><li>币币交易：点击显示「币币交易」Tab；默认显示。
+</li><li>差价合约：点击显示「差价合约」Tab。
+</li><li>期权：点击显示「期权」Tab。
+</li><li>点击「收藏」图标时，显示「注册登录」弹窗。
+</li><li>忽略图中的「永续合约」。
+</li><li>显示「交易」按钮。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E8%A1%8C%E6%83%85-%E6%B8%B8%E5%AE%A2.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E8%A1%8C%E6%83%85-%E6%B8%B8%E5%AE%A2VWRLv5.png" alt="" title=""></p>
+<br>
+<p>已登录时，显示：</p>
+<ul><li>自选：在自选中点击收藏图标，取消收藏该币种。
+</li><li>其余逻辑同「未登录」。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E8%A1%8C%E6%83%85.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E8%A1%8C%E6%83%85ymku3y.png" alt="" title=""></p>
+<br>
+<h3 id="5.1页面布局">5.1页面布局</h3>
+<br>
+<p>选择「币币交易」Tab 时，</p>
+<ul><li>名称：币种图标和名称。
+</li><li>最新价：右对齐。
+</li><li>涨跌：右对齐。
+</li><li>最高/最低：右对齐。
+</li><li>行情：右对齐。
+</li><li>去交易：交易。
+<ul><li>	在不同的 Tab 栏点击交易时，跳转至不同的页面。
+</li><li>	币币交易 Tab 点击交易，跳转至「现货交易-币币交易」页面。
+</li><li>	差价合约 Tab 点击交易，跳转至「合约交易-差价合约」页面。
+</li><li>	期权 Tab 点击交易，跳转至「合约交易-期权」页面。
+</li></ul>
+</li></ul>
+<br>
+<h2 id="6 币币交易">6 币币交易</h2>
+<br>
+<h3 id="6.1 说明">6.1 说明</h3>
+<br>
+<p>在进行币币交易之前，需要先进行资金划转，把账户里面的数字资产比如USDT、BTC划转到币币账户里。</p>
+<br>
+<p>资金划转操作路径：个人中心-资产-点击划转按钮。</p>
+<br>
+<h3 id="6.2 页面布局">6.2 页面布局</h3>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/DAAFC8C9-AF13-4104-A26E-AEA0E3B4586F.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/DAAFC8C9-AF13-4104-A26E-AEA0E3B4586F79Kx6W.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E5%B8%81%E5%B8%81%E4%BA%A4%E6%98%93.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E5%B8%81%E5%B8%81%E4%BA%A4%E6%98%93acFwjX.png" alt="" title=""></p>
+<br>
+<h3 id="6.3 币种详情">6.3 币种详情</h3>
+<br>
+<ul><li>币种图标。
+</li><li>币种一和币种二名称：
+<ul><li>	币种汇率：1 个单位的币种一能换多少个币种二。
+</li><li>	例如币种一 是 BTC，币种二是 BUSD。
+</li></ul></li><li>下拉图标：点击显示「切换币种」。
+</li><li>收藏图标：
+<ul><li>	将币种添加到「自选」。
+</li><li>	若已添加到自选，再次点击，币种将从「自选」移除，并同时 succ 提示「已取消收藏」。
+</li></ul></li><li>实时价格：根据后端 API 返回数据进行显示即可。
+</li><li>买价、卖价、最高价、最低价、今开、昨收、振幅同「实时价格」。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F7C2B46B-692D-434C-9FDA-C81034F23761.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/F7C2B46B-692D-434C-9FDA-C81034F237611Diplb.png" alt="" title=""></p>
+<br>
+<h3 id="6.4 币种详情-切换币种">6.4 币种详情-切换币种</h3>
+<br>
+<ul><li>选择框：同<a href="#1.6 组件逻辑-选择框"">/1.6 组件逻辑-选择框</a>。
+</li><li>品种：
+<ul><li>	左对齐；可排序；默认按名称顺序 A-Z 排序。
+</li><li>	显示「收藏」图标，逻辑同「币种详情」。
+</li></ul></li><li>最新价：
+<ul><li>	左对齐；显示币种和币种的汇率。
+</li><li>	可排序；按最大和最小排序；默认不排序。
+</li></ul></li><li>涨跌：
+<ul><li>	右对齐；根据后端 API 返回数据进行显示即可。
+</li><li>	可排序；按最大和最小排序；默认不排序。
+</li></ul></li><li>成交量：
+<ul><li>	右对齐；根据后端 API 返回数据进行显示即可。
+</li><li>	可排序；按最大和最小排序；默认不排序。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/DC7202EB-8C8F-424A-9DF3-2DA65E7CB62F.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/dB5eQJ6OO2AJ.png" alt="" title=""></p>
+<br>
+<h3 id="6.5 K 线图">6.5 K 线图</h3>
+<br>
+<ul><li>时间单位：分时、1 分、5 分、30 分、1 时、4 时、1 天；<mark>1 周、1 月若可以实现，则一并增加。</mark>
+</li><li>技术指标：和 App 一致。
+</li><li>全屏模式：点击后只显示「K 线图」并自动进入浏览器的全屏模式。
+</li><li>XY 轴数据根据当前交易对的小数点精度进行展示，不足小数点位数 0 补位；
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/FC4CEC8C-A000-4B30-8C61-97B0FDE2CBD2.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/FC4CEC8C-A000-4B30-8C61-97B0FDE2CBD2Dqs5kI.png" alt="" title=""></p>
+<br>
+<h3 id="6.6 盘口数据">6.6 盘口数据</h3>
+<br>
+<ul><li>定义：在页面中看到买入和卖出的挂单情况，上方红色区域是卖盘，下方绿色区域是买盘。
+</li><li>显示「买入和卖出」、「买入」「卖出」的柱状图标。
+<ul><li>	买入和卖出：显示买入和买出的挂单；每个各显示 10 行数据。
+</li><li>	买入：显示买入的挂单；显示 20 行数据。
+</li><li>	买出：显示买出的挂单；显示 20 行数据。
+</li></ul></li><li>点击某一行数据：
+<ul><li>	将当前点击的数值，自动填充至右侧的「交易区域」的「价格」输入框。
+</li><li>	数值需根据当前交易对小数点精度进行限制，不足位数补0。
+</li></ul></li><li>盘口消息数据根据市场数据实时推送，当前交易对涨跌状态根据市场走势判断，上涨显示绿色字体并且带有绿色向上箭头，下跌显示红色字体并且带有红色向下箭头。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/D5DDC106-16EA-423A-892E-1A329FFD9F6C.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/D5DDC106-16EA-423A-892E-1A329FFD9F6Cmwhjfv.png" alt="" title=""></p>
+<br>
+<h3 id="6.7 最新成交">6.7 最新成交</h3>
+<br>
+<ul><li>定义：以当前时间为标准，最近成交的买单和卖单情况。
+</li><li>卖单：显示红色。
+</li><li>买单：显示绿色。
+</li><li>买单和买单混合显示，如图所示；数据每秒刷新一次。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/845CA594-9699-4925-BDA5-DA6395B4755D.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/845CA594-9699-4925-BDA5-DA6395B4755DlAENcX.png" alt="" title=""></p>
+<br>
+<h3 id="6.8 买入和卖出-市价委托">6.8 买入和卖出-市价委托</h3>
+<br>
+<ul><li>默认买入：用当前币种（币种二）买入目标币种（币种一）。
+</li><li>委托类型：市价：
+<ul><li>	市价委托是指用户以当前市场最优价格立即执行买入或者卖出，达到快速成交的目的。
+</li><li>	假设当前 BTC 最新成交价为 13,000 USDT，若用户想立即市价快速买入 BTC，则可以选择市价委托，并填写委托的总金额如 20,000 USDT，下单后，该委托单会被立即成交，剩余未能成交部分会被撤销。在快速波动的市场中，该市价委托单的成交价不一定是 13,000 USDT，而是实时市场价格，有可能高于 13,000 USDT，也可能低于 13,000 USDT。
+</li><li>	市价单未成交状态会冻结手续费。
+</li></ul></li><li>可用：显示币币账户内的可用金额；根据后端 API 返回数据进行显示即可。
+</li><li>资金划转（转账图标）：点击显示「资金划转」弹窗。
+</li><li>价格：输入框禁止输入；占位符：以当前市场最优价格下单。
+</li><li>数量：数字输入框。
+</li><li>金额：
+<ul><li>	数字输入框；
+</li><li>	可输入的最大值为交易账户内的币种二的最大值。
+</li><li>	例如交易账户内有 1000USDT，则输入最大值为 1000。
+</li></ul></li><li>滑块：
+<ul><li>	定义：通过拖动滑块在一个固定区间内进行选择。
+</li><li>	在拖动滑块时，显示当前值。
+</li><li>	最小值 1，最大值 100；
+</li><li>	步长：1；1 即为「可用金额的1%」。
+</li><li>	显示间断点：25%、50%、75%、100%。
+</li></ul></li><li>金额输入框和金额滑块之间会互相改变输入值。
+<ul><li>	输入框输入值时，滑块会自动选择对应的步长。
+</li><li>	滑块选择步长时，输入框会输入对应的数值。
+</li></ul></li><li>价格、金额、数量输入框之间会互相改变输入值。
+<ul><li>	输入价格，改变金额。
+</li><li>	输入数量，改变金额。
+</li><li>	输入金额，改变数量。
+</li><li>	公式：价格×数量=金额。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/243EC84A-33A2-45E5-A82E-6E58F3222FB9.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/qJ0rSHKntwhu.png" alt="" title=""></p>
+<br>
+<p>卖出-市价委托逻辑同买入。</p>
+<br>
+<h3 id="6.9 点击买入或卖出">6.9 点击买入或卖出</h3>
+<br>
+<p>若价格、数量、金额，任意选项未填写时，点击买入或卖出，会在选项底部提示：</p>
+<ul><li>价格未填写：价格不能为空。
+</li><li>数量未填写：数量不能为空。
+</li></ul>
+<br>
+<p>若都填写，点击买入或卖出，显示「下单二次确认弹窗」：</p>
+<ul><li>显示买入和卖出币种名称：例如 ETH/BTC。
+</li><li>显示交易类型：例如买入和卖出。
+</li><li>显示价格、数量、委托类型。
+</li><li>点击确认，下单成功：提示：下单成功；下单完成后对接后端scoket消息推送，更新当前持仓，逐笔成交和当前成交列表数据刷新，占用保证金数据刷新。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F03FFA54-C73D-46DC-9588-E35EDC8A4C19.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/F03FFA54-C73D-46DC-9588-E35EDC8A4C19KqH4RB.png" alt="" title=""></p>
+<br>
+<h3 id="6.10 委托订单">6.10 委托订单</h3>
+<br>
+<ul><li>当前委托：
+<ul><li>	定义：当前没有成交的挂单。
+</li><li>	字段：日期时间、品种名称、委托价格、委托数量、状态、成交数量、占用保证金。
+</li></ul></li><li>当前成交：带日期选择器。
+<ul><li>	定义：当前已经成交的挂单。
+</li><li>	字段：日期时间、品种名称、方向、成交价格、成交数量、成交金额、手续费。  
+</li></ul></li><li>历史委托：带日期选择器。
+<ul><li>	定义：已经成交和已撤销没成交的委托单子。
+</li><li>	字段：日期时间、品种名称、方向、委托价格、委托数量、状态、成交数量。 
+</li></ul></li><li>历史成交：带日期选择器；
+<ul><li>	字段：日期时间、品种名称、方向、成交价格、成交数量、成交金额、手续费。 
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/6B09A9FE-2C42-475F-9B7E-A2D99EAE4D8B.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/6B09A9FE-2C42-475F-9B7E-A2D99EAE4D8B1dDLMm.png" alt="" title=""></p>
+<br>
+<h3 id="6.11 未登录的显示">6.11 未登录的显示</h3>
+<br>
+<p>以上逻辑均为「已登录的用户逻辑」，若用户未登录：</p>
+<ul><li>交易：不显示买入或卖出，显示「注册或登录」，点击显示「注册登录」弹窗。
+</li><li>委托订单：显示「暂无数据 」提示。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F2D6AA5F-310A-478C-8CCB-3DA097AB5438.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/nIQmvulRNOdt.png" alt="" title=""></p>
+<br>
+<h2 id="7 合约交易-差价合约">7 合约交易-差价合约</h2>
+<br>
+<h3 id="7.1 说明">7.1 说明</h3>
+<br>
+<p>在进行差价合约交易之前，需要先进行资金划转，把其他账户里面的数字资产比如USDT、BTC划转到合约（杠杆）账户里，该交易会预先冻结账户资产。</p>
+<br>
+<p>资金划转操作路径：个人中心-资产-点击划转按钮。</p>
+<br>
+<h3 id="7.2 页面布局">7.2 页面布局</h3>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/D9445277-909E-4D01-8281-0E57A9B78313.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/J8f7p7nZ6OM6.png" alt="" title=""></p>
+<br>
+<h3 id="7.2 名词解释">7.2 名词解释</h3>
+<br>
+<ul><li>建仓：也叫开仓，是指交易者买入卖出一定数量的数字货币。
+</li><li>平仓：交易者卖出一定数量的数字货币。
+</li><li>持仓：交易者继续持有一定数量的数字货币。
+</li><li>限价：
+<ul><li>	限价委托是指用户设置委托数量以及可接受的最高买价或最低卖价，当市场价格符合用户预期时，系统会以限价范围内的最优价格进行成交。
+</li><li>	例如当前 BTC 市场价格为 13,000 USDT，如果用户想要在更便宜的 12,900 USDT 买入，可选择限价委托，设定买入价格 12,900，下单后，当价格下跌到小于等于 12,900 USDT 时委托单会自动成交。
+</li></ul></li><li>市价：同<a href="#6 币币交易"">/6 币币交易</a>。
+</li><li>止盈止损：
+<ul><li>	定义：用户设置好委托单及委托单触发价格，当市场的最新成交价达到触发价格时，系统按照用户预先设置的委托价格和数量自动下委托单的交易策略。
+</li><li>	单向止盈止损：只设置止盈或只设置止损，逻辑同上。
+</li><li>	双向止盈止损：<mark>同时设置止盈和止损：一边触发后另一边失效。</mark>
+</li></ul>
+</li></ul>
+<h3 id="7.2 币种详情">7.2 币种详情</h3>
+<br>
+<p>同<a href="#6 币币交易"">/6 币币交易</a>。</p>
+<br>
+<h3 id="7.3 K 线图">7.3 K 线图</h3>
+<br>
+<p>同<a href="#6 币币交易"">/6 币币交易</a>。</p>
+<p>注意：本页面的 K 线图无成交量和底部无成交柱状图。</p>
+<br>
+<h3 id="7.4 开仓-买入-限价和市价">7.4 开仓-买入-限价和市价</h3>
+<br>
+<ul><li>默认开仓；可选平仓。
+</li><li>默认买入；可选卖出。
+</li><li>默认限价委托；可选市价委托。
+</li><li>净值：合约账户 USDT 的净值。
+</li><li>可用：合约账户 USDT 的可用值。
+</li><li>风险率：净值÷可用。
+</li><li>价格：该币种当前的买入和卖出价格；根据后端 API 返回数据进行显示即可。
+</li><li>止盈止损：默认不勾选。
+</li><li>其余同<a href="#6 币币交易"">/6 币币交易</a>。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/6F7E64BA-55B3-48AF-B7BF-D6F3EB04789A.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/6F7E64BA-55B3-48AF-B7BF-D6F3EB04789Aei4jbe.png" alt="" title=""></p>
+<br>
+<h3 id="7.5 开仓-卖出-限价和市价">7.5 开仓-卖出-限价和市价</h3>
+<br>
+<p>逻辑同上。</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/FA808CD6-96F3-4607-9205-37C4714385A6.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/FA808CD6-96F3-4607-9205-37C4714385A6zl33c7.png" alt="" title=""></p>
+<br>
+<h3 id="7.6 平仓-买入和卖出">7.6 平仓-买入和卖出</h3>
+<br>
+<p>平仓只有市价，没有止盈止损；其余逻辑同上。</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/B32D26CF-7A03-42D4-B07A-6D6FF02A3C53.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/B32D26CF-7A03-42D4-B07A-6D6FF02A3C53QDYfo2.png" alt="" title=""></p>
+<br>
+<p>止盈止损逻辑</p>
+<ul><li>勾选后显示金额输入框。
+</li><li>输入框逻辑同「6 币币交易-交易-金额输入框」。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/4BFDC723-CA65-481C-8995-6A0CFB80A627.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/4BFDC723-CA65-481C-8995-6A0CFB80A627FMzOS7.png" alt="" title=""></p>
+<br>
+<h3 id="7.7 委托订单">7.7 委托订单</h3>
+<br>
+<ul><li>当前持仓：
+<ul><li>	字段：日期时间、品种名称、建仓/平仓、方向、持仓成本、持仓数量、可用数量、盈亏、平仓按钮。
+</li><li>	平仓按钮：popconfirm 二次确认；确认后以市价平仓。
+</li></ul></li><li>逐笔持仓：日期时间、品种名称、建仓/平仓、方向、持仓价格、持仓数量、可用数量、盈亏。
+</li><li>当前成交：成交日期时间、品种名称、建仓/平仓、方向、成交价格、成交数量、成交金额、手续费。 
+</li><li>历史委托
+<ul><li>	日期选择器。
+</li><li>	字段：时间、品种名称、建仓/平仓、方向、市价/限价、委托价格、委托数量、状态、成交数量、占用保证金。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F85BF466-69D8-42C3-832F-8D1E52600D1C.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/F85BF466-69D8-42C3-832F-8D1E52600D1Cu2ehnq.png" alt="" title=""></p>
+<br>
+<h3 id="7.6 未登录逻辑">7.6 未登录逻辑</h3>
+<br>
+<p>同「6.6 币币交易-未登录」。</p>
+<p>即交易区域显示登录注册，委托订单显示暂无数据，可见设计稿。</p>
+<br>
+<h2 id="8 期权交易">8 期权交易</h2>
+<br>
+<h3 id="8.1 说明">8.1 说明</h3>
+<br>
+<p>在进行期权交易之前，需要先进行资金划转，把其他账户里面的数字资产比如USDT、BTC划转到期权（快盘）账户里，该交易会预先冻结账户资产。</p>
+<br>
+<p>资金划转操作路径：个人中心-资产-点击划转按钮。</p>
+<br>
+<h3 id="8.2 页面布局">8.2 页面布局</h3>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/CFB30284-7E75-47DE-84D3-00D4FCBF2B08.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/sTDFUMhhYAWL.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E6%9C%9F%E6%9D%83.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E6%9C%9F%E6%9D%8364REGg.png" alt="" title=""></p>
+<br>
+<h3 id="8.3 币种详情、K 线图">8.3 币种详情、K 线图</h3>
+<br>
+<p>同<a href="#6 币币交易"">/6 币币交易</a>。</p>
+<p>注意：本页面的 K 线图无成交量和底部无成交柱状图。</p>
+<br>
+<h3 id="8.4 交易">8.4 交易</h3>
+<br>
+<p>投资逻辑</p>
+<ul><li>收益率：根据投资的金额计算收益率。
+</li><li>假设收益率为 90%，本金是 100 USDT；成功看涨看跌，收益 90%，即收益 90 USDT，本机+余额 190 USDT；失败看涨看跌，本金全亏。
+</li></ul>
+<br>
+<p>到期时间</p>
+<ul><li>根据后端 API 返回数据显示「周期」和「收益率」即可。
+</li><li>支持 1-6 种周期。
+</li><li>可用：期权账户的可用金额。
+</li><li>金额：投资金额输入根据后台限制单笔至多可投资多少金额 。
+</li><li>金额输入框和滑块同<a href="#6 币币交易"">/6 币币交易</a>。
+</li><li>当前价：根据后端 API 返回数据显示价格；当前价期权根据市场走势上涨字体显示绿色以及绿色向上箭头，下跌字体显示红色以及红色向下箭头。
+</li><li>看涨：认为周期结束后，会涨。
+</li><li>看跌：认为周期结束后，会跌。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/C1CDA9B0-5092-4E3F-BE0B-EF2EC30E3DA6.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/T48T9EAUhw3n.png" alt="" title=""></p>
+<br>
+<p>点击看涨、看跌逻辑</p>
+<ul><li>金额未输入，在输入框下方提示：请输入金额。
+</li><li>金额超过期权账户最大值，提示：账户余额不足，请充值后再操作。
+</li><li>金额超过后台限制单笔投资金额 ，提示：投资金额超过最大限额 N；N 为后台设置的具体数值。
+</li><li>金额已输入，且通过验证，二次弹窗确认。
+</li><li>下单成功后，后端推送消息刷新当前持仓列表数据，可用资金数据刷新； 同时在「委托订单」列表显示。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/0FDE7361-E033-4FEB-A849-07DA4501A7B0.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/0FDE7361-E033-4FEB-A849-07DA4501A7B09A2WNb.png" alt="" title=""></p>
+<br>
+<h3 id="8.5 委托订单">8.5 委托订单</h3>
+<br>
+<ul><li>当前持仓：
+<ul><li>	字段：成交时间、品种、涨跌、周期、本金、价格、盈亏、剩余时间和倒计时进度条，
+</li><li>	倒计时进度条：同<a href="#4.4 我的订单"">/4.4 我的订单</a>。
+</li></ul></li><li>历史持仓：
+<ul><li>	带日期选择器。
+</li><li>	字段：成交时间、品种、涨跌、周期、本金、价格、盈亏、剩余时间。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/79460B8C-D757-42AA-898C-5279103E4AEF.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/79460B8C-D757-42AA-898C-5279103E4AEFuTtItD.png" alt="" title=""></p>
+<br>
+<h3 id="8.6 未登录">8.6 未登录</h3>
+<br>
+<p>交易区域显示登录注册，委托订单显示暂无数据，可见设计稿。</p>
+<br>
+<h2 id="9 关于我们">9 关于我们</h2>
+<br>
+<p>点击「关于我们」，新建 Tab 页面打开落地页。</p>
+<p>落地页的链接设置由 MTP 后台控制。</p>
+<br>
+<h2 id="10 安全中心">10 安全中心</h2>
+<br>
+<h3 id="10.1 页面布局">10.1 页面布局</h3>
+<br>
+<ul><li>登录账户。
+</li><li>登录昵称。
+</li><li>登录密码。
+</li><li>资金密码。
+</li><li>身份验证。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/CB700D99-71A2-486C-9DE0-681870644616.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/CB700D99-71A2-486C-9DE0-681870644616foOLM8.png" alt="" title=""></p>
+<br>
+<h3 id="10.2 登录账户和昵称">10.2 登录账户和昵称</h3>
+<br>
+<p>登录账户：显示账户 ID 和「不可修改」文案。</p>
+<br>
+<p>登录昵称：显示昵称和「修改」按钮；点击「修改」，显示修改昵称弹窗。</p>
+<ul><li>类型：文本输入框。
+</li><li>字符长度：2-16 位。
+</li><li>字符输入限制：字母（大小写不限）、数字、简体中文、繁体中文。
+</li><li>昵称小于 2 位时，提示：昵称小于 2 位，请重新输入。
+</li><li>昵称大于 16 位时，提示：昵称大于 16 位，请重新输入。
+</li><li>昵称有符号时，提示：昵称中包含符号，请重新输入。
+</li><li>昵称和他人重复时，提示：昵称和他人重复，请重新输入。
+</li><li>何时提示：输入焦点从输入框中移出。
+</li><li>保存：
+<ul><li>	默认置灰，不可点击。
+</li><li>	当输入昵称，且满足昵称输入要求时，可点击。
+</li><li>	点击保存当前昵称。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/F7B61A9C-FCDE-44D3-9830-84569821725E.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/YXJmVpWasEmx.png" alt="" title=""></p>
+<br>
+<h3 id="10.3 登录密码">10.3 登录密码</h3>
+<br>
+<p>显示「用于保护账户安全」和「修改」按钮；点击「修改」，显示修改登录密码弹窗，输入、校验逻辑同<a href="#3 注册登录"">/3 注册登录</a>。</p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/C3F46DA9-EBD8-4491-8339-8CD8EAD24101.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/MGvmlu2B7rqN.png" alt="" title=""></p>
+<br>
+<h3 id="10.4 资金密码">10.4 资金密码</h3>
+<br>
+<p>未设置资金密码时，显示「设置」；已设置资金密码时，显示「修改」；默认没有设置资产密码。</p>
+<br>
+<p>设置和修改资金密码的逻辑一致：</p>
+<ul><li>输入手机验证码。
+</li><li>输入密码。
+</li><li>确认密码。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/B69A8025-F98A-498E-9B04-21B44DFA4000.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/B69A8025-F98A-498E-9B04-21B44DFA4000bwX3ra.png" alt="" title=""></p>
+<br>
+<h3 id="10.5 身份验证">10.5 身份验证</h3>
+<br>
+<p>显示「完成身份认证，有助于保护账户安全，提高提现额度及交易权限」文案。</p>
+<ul><li>	默认没有通过身份认证，并显示「请前往 App 验证」。
+</li><li>	若已通过初级认证，显示「初级认证」。
+</li><li>	若已通过高级认证，显示「高级认证」。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/692904E5-002C-47E5-85F4-0D7245745A51.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/c8xcTnMVaPYd.png" alt="" title=""></p>
+<br>
+<h2 id="11 个人中心">11 个人中心</h2>
+<br>
+<h3 id="11.1 页面布局">11.1 页面布局</h3>
+<br>
+<ul><li>我的。
+</li><li>各账户余额。
+</li><li>当前选中账户的持有币种列表。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/D51E3FF7-E1B5-4701-98AE-2F7775C6F974.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/D51E3FF7-E1B5-4701-98AE-2F7775C6F974lRmigD.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E8%B5%84%E4%BA%A7.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E8%B5%84%E4%BA%A7PVReP6.png" alt="" title=""></p>
+<br>
+<h3 id="11.2 总资产">11.2 总资产</h3>
+<br>
+<p>个人中心，所有有关资产的页面，当资产总额小数位后多了 0 时，例如 54.086100，应删除小数点后的零，显示 54.0861。</p>
+<br>
+<p>总账户总资产：</p>
+<ul><li>总资产：
+<ul><li>	默认明文显示。
+</li><li>	显示：按照 USDT 汇率换算的资产。
+</li><li>	显示：按照网站设置，法币汇率换算的资产。
+</li><li>	点击「眼睛」图标，隐藏具体的资产金额；隐藏当前页面的所有关于货币的数字，包括表格内的。
+</li></ul></li><li>充值：点击显示充值弹窗。
+</li><li>提币：点击显示提币弹窗。
+</li><li>划转：点击显示划转弹窗。
+</li><li>资金明细：点击显示「资金明细」页面。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/4635B1A7-D658-446C-8D1D-D83DE0DBF1E1.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/4635B1A7-D658-446C-8D1D-D83DE0DBF1E1EcUTjp.png" alt="" title=""></p>
+<br>
+<h3 id="11.3 总资产-充币">11.3 总资产-充币</h3>
+<br>
+<ul><li>币种：同<a href="#1.6 组件逻辑-选择框"">/1.6 组件逻辑-选择框</a>。
+</li><li>充币网络
+<ul><li>	类型：Radio。
+</li><li>	默认选择第一个
+</li><li>	选项数据来自 MTP 平台。
+</li></ul></li><li>充币地址：
+<ul><li>	根据币种和充币网络，自动生成二维码。
+</li><li>	显示充值地址文本。
+</li></ul></li><li>确定：记录该笔订单，并等待用户充币完成。
+</li><li>取消：关闭弹窗。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/C6851CDC-6753-47B7-8B5D-9FE685B270E1.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/qYBa6A.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/C31E5C87-629D-48DB-91FF-2869F71C518B.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/7kUL03.png" alt="" title=""></p>
+<br>
+<h3 id="11.4 总资产-提币">11.4 总资产-提币</h3>
+<br>
+<ul><li>币种：同「充币弹窗」。
+</li><li>提币地址：
+<ul><li>	类型：文本输入框。
+</li><li>	输入限制：字母（大小写不限）、数字和符号（仅限 ASCII 标准字符）。
+</li><li>	输入长度：不限制。
+</li><li>	占位文本：请输入提币地址。
+</li></ul></li><li>提币网络：同「充币弹窗」。
+</li><li>标签：后端返回则显示；后端不返回则不显示该文本输入框。
+</li><li>提币数量：
+<ul><li>	类型：数字输入框。
+</li><li>	右侧显示币种名称。
+</li><li>	右侧显示「全部」按钮；点击全部，自动将用户当前的选择的币种的所有货币数量输入进输入框。
+</li><li>	占位文本：请输入提币数量。
+</li><li>	说明文本：可用 N USDT；N 为用户当前的选择的币种的所有货币数量。
+</li></ul></li><li>手续费：
+<ul><li>	显示当前的交易手续费。
+</li><li>	禁用状态。
+</li></ul></li><li>到账数量：
+<ul><li>	显示到账后的货币数量。
+</li><li>	禁用状态。
+</li></ul></li><li>资金密码
+<ul><li>	类型：文本输入框。
+</li><li>	输入限制：字母（大小写不限）、数字和符号（仅限 ASCII 标准字符）。
+</li><li>	输入长度：不限制。
+</li><li>	占位文本：请输入资金密码。
+</li></ul></li><li>提币：
+<ul><li>	校验资金密码是否正确，错误时，提示「资金密码输入错误，请重新输入」。
+</li><li>	正确时，记录该笔订单，并等待提币完成。
+</li></ul></li><li>取消：关闭弹窗。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/5E9FB541-7557-4407-9A37-8F2FAA7CFB60.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/E0sb8r.png" alt="" title=""></p>
+<br>
+<h3 id="11.5 总资产-划转">11.5 总资产-划转</h3>
+<br>
+<ul><li>划出账户：默认币币账户；无法更改。
+</li><li>划入账户：
+<ul><li>	默认法币账户。
+</li><li>	Select 下拉框，下拉选择其他选项。
+</li><li>	选项有：币币账户、合约账户、期权账户、法币账户。
+</li><li>	币种：同「充币弹窗」。
+</li><li>	划转数量：同「提币弹窗-提币数量」。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/FC81C27E-934D-44B8-8FF4-3FD22E398DAC.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/i6YMrsjEPL49.png" alt="" title=""></p>
+<br>
+<p>点击右方「切换」图标，更换划出和划入账户，同时：</p>
+<ul><li>划出：改为法币；可更改账户
+</li><li>划入：改为币币；无法更改。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/2AC5BCF3-B353-48A0-BD3B-302B0EBEEA4C.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/2AC5BCF3-B353-48A0-BD3B-302B0EBEEA4CI8toBJ.png" alt="" title=""></p>
+<br>
+<h3 id="11.6 总资产-资金明细">11.6 总资产-资金明细</h3>
+<br>
+<p>操作：</p>
+<ul><li>选项卡：提币明细（默认）、充币明细、划转明细。
+</li><li>带日期选择器。
+</li></ul>
+<br>
+<p>表格字段</p>
+<ul><li>日期和时间：左对齐；YYYY-MM-DD HH:MM:SS。
+</li><li>币种：左对齐；显示币种名称。
+</li><li>类型：左对齐。
+</li><li>数量：右对齐；显示具体的货币数量。
+</li><li>状态：左对齐。
+<ul><li>	待审核。
+</li><li>	审核通过。
+</li><li>	审核拒绝。
+</li><li>	待处理。
+</li><li>	处理中。
+</li><li>	成功。
+</li><li>	失败。
+</li></ul>
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E8%B5%84%E9%87%91%E6%98%8E%E7%BB%86.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E8%B5%84%E9%87%91%E6%98%8E%E7%BB%86YLMdEP.png" alt="" title=""></p>
+<br>
+<h3 id="11.7 各账户余额">11.7 各账户余额</h3>
+<br>
+<ul><li>币币账户：
+<ul><li>	默认显示。
+</li><li>	固定文案：总资产折合（USDT）。
+</li><li>	显示按照 USDT 汇率换算的资产金额。
+</li></ul></li><li>合约账户：同「币币账户」。
+</li><li>期权账户：同「币币账户」。
+</li><li>法币账户：显示按照网站设置，法币汇率换算的资产。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/33680B10-1557-4D7D-9043-ECBF6D26AC23.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/CSL3SAmAK1QS.png" alt="" title=""></p>
+<br>
+<h3 id="11.8 币种列表">11.8 币种列表</h3>
+<br>
+<p>显示已选择账户（上方的 4 个账户）的持有币种列表，例如选择币币账户，则显示币币账户中的所有币种。</p>
+<ul><li>币种：左对齐；图标+币种名称。
+</li><li>可用：右对齐，币种数量。
+</li><li>冻结：右对齐，已冻结的币种数量。
+</li><li>折合（CNY）：右对齐，显示按照网站设置，法币汇率换算的资产。
+</li><li>操作：查看流水；点击新建 Tab 页面，显示「11.9 查看流水」页面。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/0A5ED4DE-0B18-4272-A3BD-73AAE314407E.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/zhljv4.png" alt="" title=""></p>
+<br>
+<h3 id="11.9 币种列表-资金流水">11.9 币种列表-资金流水</h3>
+<br>
+<p>操作栏：</p>
+<ul><li>搜索：搜索流水号或关联单号。
+</li><li>选择币种：同 <a href="#1.6 组件逻辑-选择框"">/1.6 组件逻辑-选择框</a>。
+</li><li>选择类型：类型：Select 多选择框。
+</li><li>日期选择器：同<a href="#1.4 组件逻辑-日期选择器"">/1.4 组件逻辑-日期选择器</a>。
+</li><li>导出：点击将当前表格内的数据导出为 Csv。
+</li></ul>
+<br>
+<p><mark>字段（以本文档的顺序为准）：</mark></p>
+<ul><li>时间：左对齐；YYYY-MM-DD HH:MM:SS。
+</li><li>币种：左对齐；显示「币种名称+交易账户」。
+</li><li>流水号 。
+</li><li>账户 ID 。
+</li><li>类型。
+</li><li>变动金额。
+</li><li>变后金额。
+</li><li>备注。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/78B67029-824D-462D-8BC0-E0AB29892967.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/Screenshot@master/uPic/gf0Wgj.png" alt="" title=""></p>
+<br>
+<h3 id="12 邀请好友">12 邀请好友</h3>
+<br>
+<p>邀请逻辑：</p>
+<ul><li>推荐码仅可在首次开立币安帐户时使用。您或受邀人必须输入正确的推荐码。如果受邀人在注册时忘记使用或输入了错误的推荐码，则您将无法赚取该受邀人产生的佣金。
+</li><li>推荐人可在受邀用户的币币交易、差价合约、期权进行交易时赚取佣金。
+</li><li>推荐人只有先自己有对应的账户，即期权、杠杆、币币，才能从好友交易中赚钱。
+</li><li>推荐佣金将实时计算，每间隔一小时转账至相应的帐户。只有在受邀人完成交易后，您才能获得推荐佣金。
+</li><li>返佣的失效不限。
+</li><li>一级返佣 20%，二级返佣 10%。
+</li></ul>
+<br>
+<h3 id="12.1 页面布局">12.1 页面布局</h3>
+<br>
+<ul><li>宣传图。
+</li><li>返佣比例。
+</li><li>返佣明细。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/90957A5F-DC04-4FDA-8762-AED7A87B08FE.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/90957A5F-DC04-4FDA-8762-AED7A87B08FEFqFNso.png" alt="" title=""></p>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8B.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8BLsiTtS.png" alt="" title=""></p>
+<br>
+<h3 id="12.2 宣传图">12.2 宣传图</h3>
+<br>
+<ul><li>固定文案。
+</li><li>我的邀请码：后端生成；点击复制图标，复制邀请码到剪贴板；同时成功提示。
+</li><li>我的返佣人数：具体邀请的好友人数（一级+二级）。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/5E258DF1-2F50-4B79-9F16-B2F73BEE2EA0.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/5E258DF1-2F50-4B79-9F16-B2F73BEE2EA09kCA0H.png" alt="" title=""></p>
+<br>
+<h3 id="12.3 返佣比例">12.3 返佣比例</h3>
+<br>
+<ul><li>一级返佣比例及人数。
+</li><li>二级返佣比例及人数。
+</li><li>4 个数值都由后端返回。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/0626B442-5666-4B3C-8B3A-D6562C56C8D6.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/0626B442-5666-4B3C-8B3A-D6562C56C8D6srFhk5.png" alt="" title=""></p>
+<br>
+<h3 id="12.4 返佣明细">12.4 返佣明细</h3>
+<br>
+<ul><li><mark>日期时间。</mark>
+</li><li>好友昵称。
+</li><li>账户：币币账户、合约账户、期货账户、法币账户。
+</li><li>返佣金额 USDT：具体的返佣金额；单位 USDT。
+</li></ul>
+<br>
+<p><img src='Web%20%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/9EF2C19F-04BA-42EE-BE7C-42034B50AFEB.png'></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CourseRye/ScreenShot@master/uPic/9EF2C19F-04BA-42EE-BE7C-42034B50AFEBiz0aYO.png" alt="" title=""></p>
+
+        </div>
+        <script type="text/javascript">
+            (function() {
+
+    var doc_ols = document.getElementsByTagName("ol");
+
+    for ( i=0; i<doc_ols.length; i++) {
+
+        var ol_start = doc_ols[i].getAttribute("start") - 1;
+        doc_ols[i].setAttribute("style", "counter-reset:ol_counter " + ol_start + ";");
+
+    }
+
+})();
+
+        </script>
+        <style>
+            html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}*{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}html{font-size:87.5%;line-height:1.57143em}html{font-size:14px;line-height:1.6em;-webkit-text-size-adjust:100%}body{background:#fcfcfc;color:#545454;text-rendering:optimizeLegibility;font-family:"AvenirNext-Regular"}a{color:#de4c4f;text-decoration:none}h1{font-family:"AvenirNext-Medium";color:#333;font-size:1.6em;line-height:1.3em;margin-bottom:.78571em}h2{font-family:"AvenirNext-Medium";color:#333;font-size:1.3em;line-height:1em;margin-bottom:.62857em}h3{font-family:"AvenirNext-Medium";color:#333;font-size:1.15em;line-height:1em;margin-bottom:.47143em}p{margin-bottom:1.57143em;hyphens:auto}hr{height:1px;border:0;background-color:#dedede;margin:-1px auto 1.57143em auto}ul,ol{margin-bottom:.31429em}ul ul,ul ol,ol ul,ol ol{margin-bottom:0px}ol{counter-reset:ol_counter}ol li:before{content:counter(ol_counter) ".";counter-increment:ol_counter;color:#e06e73;text-align:right;display:inline-block;min-width:1em;margin-right:0.5em}b,strong{font-family:"AvenirNext-Bold"}i,em{font-family:"AvenirNext-Italic"}code{font-family:"Menlo-Regular"}.text-overflow-ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sf_code_string,.sf_code_selector,.sf_code_attr-name,.sf_code_char,.sf_code_builtin,.sf_code_inserted{color:#D33905}.sf_code_comment,.sf_code_prolog,.sf_code_doctype,.sf_code_cdata{color:#838383}.sf_code_number,.sf_code_boolean{color:#0E73A2}.sf_code_keyword,.sf_code_atrule,.sf_code_rule,.sf_code_attr-value,.sf_code_function,.sf_code_class-name,.sf_code_class,.sf_code_regex,.sf_code_important,.sf_code_variable,.sf_code_interpolation{color:#0E73A2}.sf_code_property,.sf_code_tag,.sf_code_constant,.sf_code_symbol,.sf_code_deleted{color:#1B00CE}.sf_code_macro,.sf_code_entity,.sf_code_operator,.sf_code_url{color:#920448}.note-wrapper{max-width:46em;margin:0px auto;padding:1.57143em 3.14286em}.note-wrapper.spotlight-preview{overflow-x:hidden}u{text-decoration:none;background-image:linear-gradient(to bottom, rgba(0,0,0,0) 50%,#e06e73 50%);background-repeat:repeat-x;background-size:2px 2px;background-position:0 1.05em}s{color:#878787}p{margin-bottom:0.1em}hr{margin-bottom:0.7em;margin-top:0.7em}ul li{text-indent:-0.35em}ul li:before{content:"•";color:#e06e73;display:inline-block;margin-right:0.3em}ul ul{margin-left:1.25714em}ol li{text-indent:-1.45em}ol ol{margin-left:1.25714em}blockquote{display:block;margin-left:-1em;padding-left:0.8em;border-left:0.2em solid #e06e73}.todo-list ul{margin-left:1.88571em}.todo-list li{text-indent:-1.75em}.todo-list li:before{content:"";display:static;margin-right:0px}.todo-checkbox{text-indent:-1.7em}.todo-checkbox svg{margin-right:0.3em;position:relative;top:0.2em}.todo-checkbox svg #check{display:none}.todo-checkbox.todo-checked #check{display:inline}.todo-checkbox.todo-checked+.todo-text{text-decoration:line-through;color:#878787}.code-inline{display:inline;background:white;border:solid 1px #dedede;padding:0.2em 0.5em;font-size:0.9em}.code-multiline{display:block;background:white;border:solid 1px #dedede;padding:0.7em 1em;font-size:0.9em;overflow-x:auto}.hashtag{display:inline-block;color:white;background:#b8bfc2;padding:0.0em 0.5em;border-radius:1em;text-indent:0}.hashtag a{color:#fff}.address a{color:#545454;background-image:linear-gradient(to bottom, rgba(0,0,0,0) 50%,#0da35e 50%);background-repeat:repeat-x;background-size:2px 2px;background-position:0 1.05em}.address svg{position:relative;top:0.2em;display:inline-block;margin-right:0.2em}.color-preview{display:inline-block;width:1em;height:1em;border:solid 1px rgba(0,0,0,0.3);border-radius:50%;margin-right:0.1em;position:relative;top:0.2em;white-space:nowrap}.color-code{margin-right:0.2em;font-family:"Menlo-Regular";font-size:0.9em}.color-hash{opacity:0.4}.ordered-list-number{color:#e06e73;text-align:right;display:inline-block;min-width:1em}.arrow svg{position:relative;top:0.08em;display:inline-block;margin-right:0.15em;margin-left:0.15em}.arrow svg #rod{stroke:#545454}.arrow svg #point{fill:#545454}mark{color:inherit;display:inline;padding:0.2em 0.5em;background-color:#fcffc0}img{max-width:100%;height:auto}
+
+        </style>
+    </body>
+</html>
